@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'inst';
-  text = ''
+  text = 'start'
 
   onClickHandler(){
     this.title = 'facebook'
