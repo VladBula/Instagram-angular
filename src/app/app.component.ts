@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'inst';
+  text = ''
+
+  onClickHandler(){
+    this.title = 'facebook'
+  }
+
+  changeTextHandler(event: Event) {
+    this.text = (event.currentTarget as HTMLInputElement).value
+  }
 }
