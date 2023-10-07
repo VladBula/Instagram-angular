@@ -1,6 +1,7 @@
 <div *ngIf="isLoading; else content">
   <b>Loading</b>
 </div>
+<p [ngClass]="{'loading': isLoading, 'loaded': !isLoading}">Wait</p>
 <ng-template #content>
   <div>
     <span>Parent {{name}} {{surname}} from {{address.city}} {{address.city}}</span>

@@ -1,0 +1,8 @@
+<div>
+  <h3>Task</h3>
+  <div *ngFor="let fruit of fruits; odd as odd; even as even">
+    <ul *ngIf="fruit.price>7">
+      <li [ngClass]="{'error': odd, 'success': even, 'exp': fruit.price>15}">{{fruit.name}} {{fruit.price}}</li>
+    </ul>
+  </div>
+</div>
