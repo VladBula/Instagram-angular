@@ -5,3 +5,9 @@
 </div>
 <hr>
 <inst-child [surnameProps]="surname" [address]="address" (sendGradeEvent)="getGrade($event)"></inst-child>
+<div *ngFor="let lesson of lessons">
+  {{lesson.title}}
+  <div>
+    <h3 *ngFor="let grade of lesson.weekGrades">{{grade.gradeItem}}</h3>
+  </div>
+</div>
