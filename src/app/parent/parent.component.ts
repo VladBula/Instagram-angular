@@ -14,6 +14,7 @@ export interface WeekGrade {
 export interface Lesson {
   id: number
   title: string
+  template: string
   weekGrades: WeekGrade[]
 }
 
@@ -23,6 +24,7 @@ export interface Lesson {
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent {
+  isLoading = true
   name = 'V'
   surname = 'B'
   grades?: string[] = []
@@ -35,6 +37,7 @@ export class ParentComponent {
     {
       id: 0,
       title: "eng",
+      template: "bold",
       weekGrades: [{
         id: 0,
         gradeItem: 4
@@ -52,6 +55,7 @@ export class ParentComponent {
     {
       id: 0,
       title: "bel",
+      template: "italic",
       weekGrades: [{
         id: 0,
         gradeItem: 2
@@ -68,6 +72,14 @@ export class ParentComponent {
     },
 
   ]
+
+  constructor() {
+    setTimeout(()=>{
+      this.isLoading = false
+    },3000)
+
+
+  }
 
   getGrade(value: string) {
     this.grades?.push(value)

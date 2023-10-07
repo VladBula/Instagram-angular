@@ -1,13 +1,30 @@
-<div>
-  <h1>Parent {{name}} {{surname}} from {{address.city}} {{address.city}}</h1>
+<div *ngIf="isLoading; else content">
+  <b>Loading</b>
+</div>
+<ng-template #content>
+  <div>
+    <span>Parent {{name}} {{surname}} from {{address.city}} {{address.city}}</span>
+  </div>
+
+  <hr>
+
+  <inst-child [surnameProps]="surname" [address]="address" (sendGradeEvent)="getGrade($event)"></inst-child>
+
   <h2>Grades:</h2>
   <h2 *ngFor="let grade of grades; index as i">{{i}} - {{grade}}</h2>
-</div>
-<hr>
-<inst-child [surnameProps]="surname" [address]="address" (sendGradeEvent)="getGrade($event)"></inst-child>
-<div *ngFor="let lesson of lessons">
-  {{lesson.title}}
-  <div>
-    <h3 *ngFor="let grade of lesson.weekGrades">{{grade.gradeItem}}</h3>
+
+  <div *ngFor="let lesson of lessons">
+    <ng-container [ngSwitch]="lesson.template">
+      <span *ngSwitchCase="'bold'">
+        <b>{{lesson.title}}</b>
+      </span>
+      <span *ngSwitchCase="'italic'">
+        <i>{{lesson.title}}</i>
+      </span>
+    </ng-container>
+    <div>
+      <h3 *ngFor="let grade of lesson.weekGrades">{{grade.gradeItem}}</h3>
+    </div>
   </div>
-</div>
+
+</ng-template>
