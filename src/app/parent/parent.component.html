@@ -1,6 +1,7 @@
 <div>
   <h1>Parent {{name}} {{surname}} from {{address.city}} {{address.city}}</h1>
-  <h2>Grades: {{grades | json}}</h2>
+  <h2>Grades:</h2>
+  <h2 *ngFor="let grade of grades; index as i">{{i}} - {{grade}}</h2>
 </div>
 <hr>
 <inst-child [surnameProps]="surname" [address]="address" (sendGradeEvent)="getGrade($event)"></inst-child>
