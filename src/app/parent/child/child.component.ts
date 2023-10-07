@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Address} from "../parent.component";
 
 @Component({
@@ -8,6 +8,7 @@ import {Address} from "../parent.component";
 })
 export class ChildComponent {
   name = 'A'
+
 
   @Input() surnameProps?: string
   @Input() address?: Address

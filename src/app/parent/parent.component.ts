@@ -13,8 +13,13 @@ export interface Address {
 export class ParentComponent {
   name = 'V'
   surname = 'B'
+  math?: number
   address: Address = {
     city: 'Minsk',
     street: 'Levkova'
+  }
+
+  getGrade(value: number) {
+    this.math = value
   }
 }
