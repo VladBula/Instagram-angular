@@ -14,15 +14,14 @@ export interface Address {
 export class ParentComponent {
   name = 'V'
   surname = 'B'
-  math?: number
-  physics?: number
+  grades?: string[] = []
   address: Address = {
     city: 'Minsk',
     street: 'Levkova'
   }
 
-  getGrade(values: Grades) {
-    this.math = values.math
-    this.physics = values.physics
+  getGrade(value: string) {
+    this.grades?.push(value)
+    console.log(this.grades)
   }
 }

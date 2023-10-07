@@ -13,17 +13,15 @@ export interface Grades {
 })
 export class ChildComponent {
   name = 'A'
+  grade = ''
 
 
   @Input() surnameProps?: string
   @Input() address?: Address
-  @Output() sendGradeEvent = new EventEmitter<Grades>()
+  @Output() sendGradeEvent = new EventEmitter<string>()
 
-  sendGrade(){
-    const math = 5
-    const physics = 4
-
-    this.sendGradeEvent.emit({math, physics})
+  sendGrade() {
+    this.sendGradeEvent.emit(this.grade)
   }
 }
 
