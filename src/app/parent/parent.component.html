@@ -1,6 +1,7 @@
 <div>
   <h1>Parent {{name}} {{surname}} from {{address.city}} {{address.city}}</h1>
   <h2>Math: {{math}}</h2>
+  <h2>Physics: {{physics}}</h2>
 </div>
 <hr>
-<inst-child [surnameProps]="surname" [address]="address "></inst-child>
+<inst-child [surnameProps]="surname" [address]="address" (sendGradeEvent)="getGrade($event)"></inst-child>
