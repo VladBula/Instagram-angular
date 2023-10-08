@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Grades} from "./child/child.component";
+import {ValueService} from "../../services/value.service";
 
 export interface Address {
   city: string,
@@ -23,7 +24,8 @@ export interface Lesson {
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
-export class ParentComponent {
+export class ParentComponent implements OnInit {
+  value = 0
   isLoading = true
   name = 'V'
   surname = 'B'
@@ -73,16 +75,24 @@ export class ParentComponent {
 
   ]
 
-  constructor() {
-    setTimeout(()=>{
+  constructor(private valueService: ValueService) {
+    setTimeout(() => {
       this.isLoading = false
-    },3000)
+    }, 3000)
+  }
 
-
+  ngOnInit():void {
+    this.valueService.value$.subscribe((data) =>{
+      this.value = data
+    })
   }
 
   getGrade(value: string) {
     this.grades?.push(value)
     console.log(this.grades)
+  }
+
+  addValue(){
+    this.valueService.add()
   }
 }
