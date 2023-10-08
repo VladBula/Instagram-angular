@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Grades} from "./child/child.component";
 import {ValueService} from "../../services/value.service";
+import {BeautyLoggerService} from "../../services/beauty-logger.service";
 
 export interface Address {
   city: string,
@@ -75,14 +76,17 @@ export class ParentComponent implements OnInit {
 
   ]
 
-  constructor(private valueService: ValueService) {
+  constructor(
+    private valueService: ValueService,
+    private beautyLoggerService: BeautyLoggerService
+              ) {
     setTimeout(() => {
       this.isLoading = false
     }, 3000)
   }
 
-  ngOnInit():void {
-    this.valueService.value$.subscribe((data) =>{
+  ngOnInit(): void {
+    this.valueService.value$.subscribe((data) => {
       this.value = data
     })
   }
@@ -92,7 +96,8 @@ export class ParentComponent implements OnInit {
     console.log(this.grades)
   }
 
-  addValue(){
+  addValue() {
     this.valueService.add()
+    this.beautyLoggerService.log("add value", "success")
   }
 }

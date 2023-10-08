@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ValueService} from "../../services/value.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'inst-di',
@@ -8,15 +9,16 @@ import {ValueService} from "../../services/value.service";
 })
 export class DiComponent implements OnInit {
 
-  value = 0
+  value$ = new Observable()
 
   constructor(private valueService: ValueService) { }
 
   ngOnInit(): void {
     //Subscribe
-    this.valueService.value$.subscribe((data) => {
-      this.value = data
-    })
+    // this.valueService.value$.subscribe((data) => {
+    //   this.value = data
+    // })
+    this.value$ = this.valueService.value$
   }
 
   decValue(){
