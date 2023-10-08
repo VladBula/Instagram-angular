@@ -8,6 +8,7 @@ import {Component} from "@angular/core";
 
 export class Test1Component {
 text='StartValue'
+  date = Date.now()
 
 
 }

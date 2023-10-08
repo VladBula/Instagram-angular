@@ -1,6 +1,7 @@
 <div class="box">
   test
   <p class="title">2wayBinding</p>
-  <h1>{{text}}</h1>
+  <h1>{{text | uppercase}}</h1>
+  <h2>Date: {{date | date: 'dd/MM/yyyy'}}</h2>
   <input type="text" [(ngModel)]="text">
 </div>
