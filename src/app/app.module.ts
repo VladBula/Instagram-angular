@@ -11,6 +11,8 @@ import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './parent/child/child.component';
 import { TaskComponent } from './task/task.component';
 import {ValueService} from "../services/value.service";
+import { TodosComponent } from './todos/todos.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import {ValueService} from "../services/value.service";
     Test7Component,
     ParentComponent,
     ChildComponent,
-    TaskComponent
+    TaskComponent,
+    TodosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ValueService],
   bootstrap: [AppComponent]
