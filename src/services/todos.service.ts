@@ -35,13 +35,15 @@ export class TodosService {
   constructor(private http: HttpClient, private beautyLoggerService: BeautyLoggerService) {
   }
 
+  private errorHandler(err: HttpErrorResponse) {
+  this.beautyLoggerService.log(err.message, 'error')
+  return EMPTY
+  // return throwError(err.message)
+}
+
   getTodos() {
     this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
-      .pipe(catchError( (err: HttpErrorResponse) => {
-        this.beautyLoggerService.log(err.message, 'error')
-        return EMPTY
-        // return throwError(err.message)
-      }))
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos)
       })
@@ -50,7 +52,9 @@ export class TodosService {
   createTodo(title: string) {
     this.http.post<TodoResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`,
       {title}, this.httpOptions)
-      .pipe(map(
+      .pipe(
+        catchError(this.errorHandler.bind(this)),
+        map(
         (data) => {
           const newTodo = data.data.item
           const stateTodos = this.todos$.getValue()
@@ -65,7 +69,9 @@ export class TodosService {
 
   deleteTodo(todoId: string) {
     this.http.delete<TodoResponse>(`${environment.baseUrl}/todo-lists/${todoId}`, this.httpOptions)
-      .pipe(map(
+      .pipe(
+        catchError(this.errorHandler.bind(this)),
+        map(
         (res) => {
           if (res.resultCode === 0) {
             return this.todos$.getValue().filter(tl => tl.id !== todoId)
