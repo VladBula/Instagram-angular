@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
-import {BehaviorSubject, map} from "rxjs";
+import {BehaviorSubject, catchError, EMPTY, map, throwError} from "rxjs";
+import {BeautyLoggerService} from "./beauty-logger.service";
 
 export interface TodoResponse<T = {}> {
   data: T;
@@ -31,11 +32,16 @@ export class TodosService {
     },
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private beautyLoggerService: BeautyLoggerService) {
   }
 
   getTodos() {
     this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
+      .pipe(catchError( (err: HttpErrorResponse) => {
+        this.beautyLoggerService.log(err.message, 'error')
+        return EMPTY
+        // return throwError(err.message)
+      }))
       .subscribe(todos => {
         this.todos$.next(todos)
       })
