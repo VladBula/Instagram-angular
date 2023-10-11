@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'inst-login',
@@ -9,9 +9,11 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl,
+    email: new FormControl('', [Validators.email, Validators.required]),
     pass: new FormControl
   })
+
+  get email() { return this.loginForm.get('email'); }
 
   constructor() { }
 
