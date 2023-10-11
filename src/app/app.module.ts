@@ -14,6 +14,7 @@ import {ValueService} from "../services/value.service";
 import { TodosComponent } from './todos/todos.component';
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [ValueService],
   bootstrap: [AppComponent]

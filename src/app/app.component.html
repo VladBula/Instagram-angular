@@ -4,7 +4,16 @@
   <input type="text" (keyup.enter)="changeTextHandler($event)" [value]="text">
   <h2>{{text}}</h2>
 </div>
+<div>
+  <nav>
+    <a class="button" routerLink="/"  routerLinkActive="activeButton" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a class="button" routerLink="/test1"  routerLinkActive="activeButton">Test1</a>
+    <a class="button" routerLink="/di" routerLinkActive="activeButton">di</a>
+    <a class="button" routerLink="/parent" routerLinkActive="activeButton">Parent</a>
+    <a class="button" routerLink="/task" routerLinkActive="activeButton">Task</a>
+    <a class="button" routerLink="/todos" routerLinkActive="activeButton">Todos</a>
+    <a class="button" routerLink="/login" routerLinkActive="activeButton">Login</a>
+  </nav>
+</div>
 <hr>
-
-<inst-todos></inst-todos>
-<inst-login></inst-login>
+<router-outlet></router-outlet>
