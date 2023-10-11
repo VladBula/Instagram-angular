@@ -15,6 +15,7 @@ import { TodosComponent } from './todos/todos.component';
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from "@angular/router";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {RouterModule} from "@angular/router";
     ChildComponent,
     TaskComponent,
     TodosComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

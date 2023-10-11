@@ -6,6 +6,7 @@ import {ParentComponent} from "./parent/parent.component";
 import {TaskComponent} from "./task/task.component";
 import {TodosComponent} from "./todos/todos.component";
 import {LoginComponent} from "./login/login.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [];
 
@@ -17,6 +18,8 @@ const routes: Routes = [];
     {path: 'task', component: TaskComponent},
     {path: 'todos', component: TodosComponent},
     {path: 'login', component: LoginComponent},
+    {path: '404', component: PageNotFoundComponent},
+    {path: '**', redirectTo: '/404'},
   ])],
   exports: [RouterModule]
 })
