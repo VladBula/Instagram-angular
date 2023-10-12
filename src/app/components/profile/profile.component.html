@@ -1,0 +1,7 @@
+<p>profile works!</p>
+<div *ngIf="(profile$ | async) as profile">
+  {{profile.aboutMe}}
+  {{profile.fullName}}
+  {{profile.userId}}
+  {{profile.photos.large}}
+</div>

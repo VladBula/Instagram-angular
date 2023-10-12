@@ -16,6 +16,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from "@angular/router";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UsersComponent } from './components/users/users/users.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TaskComponent,
     TodosComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
