@@ -33,16 +33,9 @@ interface Contacts {
 })
 export class ProfileService {
 
-  httpOptions = {
-    withCredentials: true,
-    headers: {
-      'api-key': `${environment.apiKey}`,
-    },
-  }
-
   constructor(private http:HttpClient) { }
 
   getProfile(userId: number): Observable<ProfileResponse> {
-    return this.http.get<ProfileResponse>(`${environment.socialUrl}/profile/${userId}`, this.httpOptions)
+    return this.http.get<ProfileResponse>(`${environment.socialUrl}/profile/${userId}`)
   }
 }

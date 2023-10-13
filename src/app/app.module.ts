@@ -12,12 +12,13 @@ import { ChildComponent } from './parent/child/child.component';
 import { TaskComponent } from './task/task.component';
 import {ValueService} from "../services/value.service";
 import { TodosComponent } from './todos/todos.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from "@angular/router";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UsersComponent } from './components/users/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {CredentialsInterceptor} from "../interceptors/credentials.interceptor";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [ValueService],
+  providers: [ValueService, { provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
