@@ -3,3 +3,7 @@
   <a [routerLink]="['/profile', user.id]">{{user.name}}</a>
 </div>
 <button (click)="nextUsersHandler()">next page</button>
+<button (click)="prevUsersHandler()">prev page</button>
+<div>
+  <button [routerLink]="['/users']" [queryParams]="{page: 1}">first page</button>
+</div>

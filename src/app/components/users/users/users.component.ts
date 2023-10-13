@@ -16,20 +16,38 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers()
+    // const page = Number(this.route.snapshot.queryParamMap.get('page'))
+    // const currentPage = page ? page : 1
+    // this.getUsers(currentPage)
+
+    this.route.queryParams.subscribe((params) => {
+      this.getUsers(params['page'] ? params['page'] : 1)
+    })
   }
 
-  getUsers(page: number = 1) {
-    this.users$ = this.usersService.getUsers(page ? page : 1)
+  getUsers(page: number) {
+    this.users$ = this.usersService.getUsers(page)
   }
 
   nextUsersHandler() {
     const page = Number(this.route.snapshot.queryParamMap.get('page'))
     const nextPage = page ? page + 1 : 2
 
-    this.router.navigateByUrl(`/users?page=${nextPage}`, {skipLocationChange: true})
-      .then(() => {
-        this.getUsers(nextPage)
-      })
+    //2 variant
+    this.router.navigate(['/users'], {queryParams: {page: nextPage}})
+
+
+    //1 variant
+    // this.router.navigateByUrl(`/users?page=${nextPage}`)
+    //   .then(() => {
+    //     this.getUsers(nextPage)
+    //   })
+  }
+
+  prevUsersHandler() {
+    const page = Number(this.route.snapshot.queryParamMap.get('page'))
+    const prevPage = page - 1
+
+    this.router.navigateByUrl(`/users?page=${prevPage}`)
   }
 }
