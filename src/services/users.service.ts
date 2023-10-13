@@ -32,8 +32,8 @@ export class UsersService {
 
   constructor(private http:HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<UsersResponse>(`${environment.socialUrl}/users`, this.httpOptions)
+  getUsers(page: number): Observable<User[]> {
+    return this.http.get<UsersResponse>(`${environment.socialUrl}/users?page=${page}`, this.httpOptions)
       .pipe(
       map(el => el.items)
       )
