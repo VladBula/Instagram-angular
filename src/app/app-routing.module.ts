@@ -10,14 +10,15 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {UsersComponent} from "./components/users/users/users.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {AppComponent} from "./app.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot([
     {path: '', component: AppComponent},
-    {path: 'users', component: UsersComponent},
-    {path: 'profile/:userId', component: ProfileComponent},
+    {path: 'users', component: UsersComponent, canActivate:[AuthGuard]},
+    {path: 'profile/:userId', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'test1', component: Test1Component},
     {path: 'di', component: DiComponent},
     {path: 'parent', component: ParentComponent},
